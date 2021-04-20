@@ -1,12 +1,12 @@
 import { Grid, Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, withStyles } from "@material-ui/core";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions/dCandidate";
 import DCandidateForm from "./DCandidateForm";
 
 const styles = theme => ({
     root: {
-        "& .MuiTableCell-root": {
+        "& .MuiTableCell-head": {
             fontSize: "1.25rem"
         }
     },
@@ -31,26 +31,28 @@ const DCandidates = ({ classes, ...props }) => {
                     <DCandidateForm />
                 </Grid>
                 <Grid item xs={6}>
-                    <div>List of Candidates</div>
+                    {/* <div>List of Candidates</div> */}
                     <TableContainer>
-                        <TableHead className={classes.root} >
-                            <TableRow>
-                                <TableCell>Name</TableCell>
-                                <TableCell>Mobile</TableCell>
-                                <TableCell>Blood Group</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {
-                                props.dCandidateList.map((record, index) => {
-                                    return (<TableRow key={index} hover>
-                                        <TableCell>{record.name}</TableCell>
-                                        <TableCell>{record.mobile}</TableCell>
-                                        <TableCell>{record.bloodGroup}</TableCell>
-                                    </TableRow>)
-                                })
-                            }
-                        </TableBody>
+                        <Table>
+                            <TableHead className={classes.root} >
+                                <TableRow>
+                                    <TableCell>Name</TableCell>
+                                    <TableCell>Mobile</TableCell>
+                                    <TableCell>Blood Group</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {
+                                    props.dCandidateList.map((record, index) => {
+                                        return (<TableRow key={index} hover>
+                                            <TableCell>{record.name}</TableCell>
+                                            <TableCell>{record.mobile}</TableCell>
+                                            <TableCell>{record.bloodGroup}</TableCell>
+                                        </TableRow>)
+                                    })
+                                }
+                            </TableBody>
+                        </Table>
                     </TableContainer>
                 </Grid>
             </Grid>
